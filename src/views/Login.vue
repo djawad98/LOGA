@@ -1,33 +1,42 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="px-8 py-6 mt-4 text-right bg-white shadow-lg">
+    <div
+      class="
+        max-w-full
+        w-[420px]
+        rounded
+        px-8
+        py-6
+        mt-4
+        text-right
+        bg-white
+        shadow-lg
+      "
+    >
       <div class="flex justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-20 h-20 text-blue-600"
+          class="h-12 w-12 text-blue-600"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          stroke-width="1"
         >
-          <path d="M12 14l9-5-9-5-9 5 9 5z" />
-          <path
-            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-          />
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
           />
         </svg>
       </div>
-      <h3 class="text-2xl font-bold text-center">ورود به حساب کاربری</h3>
-      <form @submit="submitForm">
+      <h3 class="text-2xl font-bold text-center mt-6">ورود به حساب کاربری</h3>
+      <form @submit.prevent="submitForm">
         <div class="mt-4">
           <div class="field">
             <label class="block" for="email">آدرس ایمیل</label>
             <input
               type="email"
+              id="email"
               required
               data-pristine-required-message="ایمیل ضروری است"
               data-pristine-email-message="ساختار ایمیل صحیح نیست"
@@ -44,24 +53,73 @@
             />
           </div>
           <div class="field mt-4">
-            <label class="block">رمز عبور</label>
-            <input
-              type="password"
-              minlength="8"
-              data-pristine-minlength-message="حداقل 8 کاراکتر ضروری است"
-              required
-              data-pristine-required-message="رمز عبور ضروی است"
-              placeholder="رمز عبور"
-              class="
-                w-full
-                px-4
-                py-2
-                mt-2
-                border
-                rounded-md
-                focus:outline-none focus:ring-1 focus:ring-blue-600
-              "
-            />
+            <div class="relative">
+              <label class="block" for="password">رمز عبور</label>
+
+              <input
+                :type="passwordVisible ? 'text' : 'password'"
+                id="password"
+                minlength="8"
+                data-pristine-minlength-message="حداقل 8 کاراکتر ضروری است"
+                required
+                data-pristine-required-message="رمز عبور ضروی است"
+                placeholder="رمز عبور"
+                class="
+                  w-full
+                  px-4
+                  py-2
+                  mt-2
+                  border
+                  rounded-md
+                  focus:outline-none focus:ring-1 focus:ring-blue-600
+                "
+              />
+              <button
+                type="button"
+                class="absolute left-3 bottom-2 bg-white cursor-pointer"
+                @mousedown="passwordVisible = true"
+                @mouseup="passwordVisible = false"
+              >
+                <!-- eye stroke-->
+                <svg
+                  v-if="passwordVisible"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                  />
+                </svg>
+
+                <!-- eye -->
+                <svg
+                  v-else
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
           <div class="flex items-baseline justify-between">
             <button
@@ -94,9 +152,10 @@
 import Pristine from 'pristinejs';
 
 export default {
-  data(){
+  data() {
     return {
       validator: null,
+      passwordVisible: false,
     }
   },
 
@@ -115,8 +174,10 @@ export default {
   },
 
   methods: {
-    submitForm(){
-      if(!this.validator.validate()) return;
+    submitForm() {
+      if (!this.validator.validate()) return;
+
+      this.$router.push({ name: "admin-panel" });
     }
   }
 }
