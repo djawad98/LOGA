@@ -166,7 +166,7 @@ export default {
     const pristine = new Pristine(form, {
       classTo: 'field',
       errorTextParent: "field",
-      errorTextClass: "text-xs  text-red-600"
+      errorTextClass: "text-xs text-red-600 absolute top-1 left-2"
     });
 
     this.validator = pristine;
@@ -183,3 +183,10 @@ export default {
 }
 
 </script>
+
+
+<style lang="scss">
+.field {
+  @apply relative;
+}
+</style>
