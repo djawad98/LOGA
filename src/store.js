@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 const store = createStore({
     state: {
         isAuthenticated: false,
+        isAdmin: null,
     },
 
     mutations: {
@@ -13,7 +14,12 @@ const store = createStore({
 
         logout(state) {
             state.isAuthenticated = false;
+            state.isAdmin = null;
         },
+
+        logInAsAdmin(state){
+            state.isAdmin = true;
+        }
     }
 });
 

@@ -4,7 +4,7 @@ import App from './App.vue'
 const app = createApp(App);
 
 
-import router from './router.js';
+import {router, store} from './router.js';
 app.use(router);
 
 

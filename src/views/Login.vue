@@ -185,14 +185,21 @@ export default {
 
 
     submitForm() {
+
       if (!this.validator.validate()) return;
 
-      if( this.form.email == "admin@a.com" && this.form.password == "12345678" ){
+      const isAdmin = this.form.email == "admin@a.com" && this.form.password == "12345678";
+      const isUser = this.form.email == "user@a.com" && this.form.password == "12345678";
+
+      if( isAdmin ){
         this.$router.push({ name: "admin-panel" });
         this.$store.commit("login");
-      } else if( this.form.email == "user@a.com" && this.form.password == "12345678" ){
+        this.$store.commit("logInAsAdmin");
+
+      } else if( isUser ){
         this.$router.push({ name: "user-panel" });
         this.$store.commit("login");
+
       } else {
         alert("کاربری یافت نشد.") //todo: change it with something more visual
       }
