@@ -36,6 +36,7 @@
             <label class="block" for="email">آدرس ایمیل</label>
             <input
               type="email"
+              v-model="form.email"
               id="email"
               required
               data-pristine-required-message="ایمیل ضروری است"
@@ -59,6 +60,7 @@
               <input
                 :type="passwordVisible ? 'text' : 'password'"
                 id="password"
+                v-model="form.password"
                 minlength="8"
                 data-pristine-minlength-message="حداقل 8 کاراکتر ضروری است"
                 required
@@ -156,6 +158,11 @@ export default {
     return {
       validator: null,
       passwordVisible: false,
+
+      form: {
+        email: "",
+        password: "",
+      }
     }
   },
 
@@ -174,12 +181,25 @@ export default {
   },
 
   methods: {
+
+
+
     submitForm() {
       if (!this.validator.validate()) return;
 
-      this.$router.push({ name: "admin-panel" });
+      if( this.form.email == "admin@a.com" && this.form.password == "12345678" ){
+        this.$router.push({ name: "admin-panel" });
+        this.$store.commit("login");
+      } else if( this.form.email == "user@a.com" && this.form.password == "12345678" ){
+        this.$router.push({ name: "user-panel" });
+        this.$store.commit("login");
+      } else {
+        alert("کاربری یافت نشد.") //todo: change it with something more visual
+      }
     }
+
   }
+
 }
 
 </script>
