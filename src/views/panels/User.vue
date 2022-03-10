@@ -4,4 +4,7 @@
     ">
         کاربر
     </p>
+
+    <button @click="$store.commit('logout')">خروج</button>
+
 </template>
