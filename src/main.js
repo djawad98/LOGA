@@ -5,8 +5,11 @@ const app = createApp(App);
 
 
 import router from './router.js';
-
 app.use(router);
+
+
+import store from "./store.js";
+app.use(store);
 
 
 
