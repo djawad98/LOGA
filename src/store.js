@@ -10,15 +10,21 @@ const store = createStore({
     mutations: {
         login(state) {
             state.isAuthenticated = true;
+            sessionStorage.setItem("isAuthenticated", true)
         },
 
         logout(state) {
             state.isAuthenticated = false;
             state.isAdmin = null;
+
+            sessionStorage.setItem("isAuthenticated", false)
+            sessionStorage.setItem("isAdmin", false)
         },
 
         logInAsAdmin(state){
             state.isAdmin = true;
+            sessionStorage.setItem("isAdmin", true)
+
         }
     }
 });

@@ -1,3 +1,6 @@
+import store from "./store.js";
+
+
 
 import {createRouter, createWebHashHistory } from 'vue-router';
 
@@ -36,10 +39,11 @@ const router = createRouter({
 });
 
 
+
 router.beforeEach((to, from) => {
 
-  const isAuthenticated = true; // todo: fill this with real value - read from store
-  const isAdmin = true; // todo: fill this with real value - read from store
+  const isAuthenticated = JSON.parse(sessionStorage.getItem('isAuthenticated'));
+  const isAdmin = JSON.parse(sessionStorage.getItem('isAdmin'));
 
   if(!isAuthenticated && to.name !== "login"){
     return {name: 'login'}
@@ -54,4 +58,4 @@ router.beforeEach((to, from) => {
 })
 
 
-export default router;
+export {router, store};
