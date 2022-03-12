@@ -3,8 +3,20 @@
         text-[6rem] font-extrabold py-6
     ">
         کاربر
+        <button class="block mx-auto text-center text-base"  @click="logout">خروج</button>
     </p>
 
-    <button @click="$store.commit('logout')">خروج</button>
 
 </template>
+
+
+<script>
+export default {
+    methods: {
+        logout(){
+            this.$router.push({name: 'login'});
+            this.$store.commit('logout')
+        }
+    }
+}
+</script>
