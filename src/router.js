@@ -7,6 +7,7 @@ import {createRouter, createWebHashHistory } from 'vue-router';
 import Login from './views/Login.vue';
 import UserPanel from './views/panels/User.vue';
 import AdminPanel from './views/panels/Admin.vue';
+import NotFound404 from './views/NotFound404.vue';
 
 const routes = [
 
@@ -28,7 +29,12 @@ const routes = [
     name: "admin-panel",
   },
 
-  //todo: add default router or 404
+  {
+    component: NotFound404,
+    path: "/:pathMatch(.*)*",
+    name: "not-found-404",
+  },
+
 
 ];
 
@@ -41,6 +47,11 @@ const router = createRouter({
 
 
 router.beforeEach((to, from) => {
+
+  console.log("going to", to)
+
+  // if(!to.hasOwnProperty("name"))
+  //   return { name: 'login' };
 
   const isAuthenticated = JSON.parse(sessionStorage.getItem('isAuthenticated'));
   const isAdmin = JSON.parse(sessionStorage.getItem('isAdmin'));
