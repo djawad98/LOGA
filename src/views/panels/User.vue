@@ -3,7 +3,7 @@
         text-[6rem] font-extrabold py-6
     ">
         کاربر
-        <button class="block mx-auto text-center text-base"  @click="logout">خروج</button>
+        <logout-button />
     </p>
 
 
@@ -11,12 +11,10 @@
 
 
 <script>
+import LogoutButton from '../../components/LogoutButton.vue';
+
 export default {
-    methods: {
-        logout(){
-            this.$router.push({name: 'login'});
-            this.$store.commit('logout')
-        }
-    }
+    components: {LogoutButton,},
 }
+
 </script>
