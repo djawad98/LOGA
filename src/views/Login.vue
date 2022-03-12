@@ -77,7 +77,7 @@
                 "
               />
               <button
-                type="button"
+                type="submit"
                 class="absolute left-3 bottom-2 bg-white cursor-pointer"
                 @mousedown="passwordVisible = true"
                 @mouseup="passwordVisible = false"
