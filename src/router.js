@@ -1,4 +1,3 @@
-import store from "./store.js";
 
 
 
@@ -112,4 +111,4 @@ router.beforeEach((to, from) => {
 })
 
 
-export { router, store };
+export default router ;

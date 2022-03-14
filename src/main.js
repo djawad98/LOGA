@@ -4,8 +4,10 @@ import App from './App.vue'
 const app = createApp(App);
 
 
-import {router, store} from './router.js';
+import router from './router.js';
 app.use(router);
+
+import store from './store.js';
 app.use(store);
 
 
