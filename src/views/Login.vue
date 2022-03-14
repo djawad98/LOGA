@@ -188,8 +188,8 @@ export default {
 
       if (!this.validator.validate()) return;
 
-      const isAdmin = this.form.email == "admin@a.com" && this.form.password == "12345678";
-      const isUser = this.form.email == "user@a.com" && this.form.password == "12345678";
+      const isAdmin = this.form.email == "admin@a.com" && this.form.password === "12345678";
+      const isUser = this.form.email == "user@a.com" && this.form.password === "12345678";
 
       if( isAdmin ){
         this.$router.push({ name: "admin-panel" });
