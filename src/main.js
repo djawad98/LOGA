@@ -39,8 +39,11 @@ $http.interceptors.response.use(
     return response;
   },
   function(error){
-    alert("خطا: "+error.response.data)
-    console.log(error, error.response.data)
+    if(error.response.status < 500 ){
+      alert("خطا: "+error.response.data)
+    } else {
+      console.log(error, error.response.data)
+    }
   }
 )
 
